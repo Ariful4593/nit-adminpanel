@@ -1,0 +1,18 @@
+.save{
+    width: 100px;
+    height: 40px;
+    background: #ffae01!important
+}
+.reset{
+    width: 100px;
+    height: 40px;
+    background: #042954!important
+}
+
+
+.save:hover{
+    background-color: #042954!important;
+}
+.reset:hover{
+    background-color: #ffae01!important;
+}

@@ -1,0 +1,9 @@
+ul li a:hover{
+    text-decoration: none;
+}
+ul li{
+    list-style-type: disc;
+}
+ul li a{
+    color: white;
+}

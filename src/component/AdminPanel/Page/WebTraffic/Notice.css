@@ -1,0 +1,21 @@
+.MuiTypography-colorTextSecondary{
+    color: white!important;
+}
+.MuiIconButton-root{
+    color:  white!important;
+}
+.dropdown-item{
+    padding: 0px 0px 0px 10px;
+    background-color: white;
+}
+ul li{
+    list-style-type: none;
+    cursor: pointer;
+    background-color: none;
+}
+li:hover{
+    color: deeppink;
+}
+.MuiDialog-paperWidthSm{
+    width: 800px!important;
+}

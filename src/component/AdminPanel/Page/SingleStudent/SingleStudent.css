@@ -1,0 +1,9 @@
+.profile{
+    background-color: #4dd0e1;
+    height: 175px;
+    width: 115px;
+    line-height: 180px;
+    text-align: center;
+    border-radius: 50%;
+    overflow: hidden;
+}
