@@ -1,5 +1,5 @@
 .save{
-    width: 100px;
+    width: 100px!important;
     height: 40px;
     background: #ffae01!important
 }
@@ -16,3 +16,11 @@
 .reset:hover{
     background-color: #ffae01!important;
 }
+
+.MuiOutlinedInput-input{
+    width: 100%!important;
+    height: 40px!important;
+}
+/* #outlined-basic{
+    height: 40px!important;
+} */

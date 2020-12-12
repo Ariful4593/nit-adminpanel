@@ -93,7 +93,7 @@ const useStyles = makeStyles((theme) => ({
 const Notice = ({ category }) => {
     const [post, setPost] = useState([])
     useEffect(() => {
-        fetch('http://localhost:4000/getPost')
+        fetch('https://secret-headland-48345.herokuapp.com/getPost')
             .then(res => res.json())
             .then(data => setPost(data))
     }, [])
@@ -102,7 +102,7 @@ const Notice = ({ category }) => {
     const [singlePost, setSinglePost] = useState([])
     const [updatePost, setUpdatePost] = useState('')
     const handleClickOpen = (id) => {
-        fetch(`http://localhost:4000/singlePost/${id}`)
+        fetch(`https://secret-headland-48345.herokuapp.com/singlePost/${id}`)
             .then(res => res.json())
             .then(data => {
                 setSinglePost(data)
@@ -110,7 +110,7 @@ const Notice = ({ category }) => {
         setOpen(true);
     };
     const handleClose = (id) => {
-        fetch('http://localhost:4000/editPost', {
+        fetch('https://secret-headland-48345.herokuapp.com/editPost', {
             method: 'PATCH',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ description: updatePost, id: id })
@@ -126,7 +126,7 @@ const Notice = ({ category }) => {
         }
     }
     const handleDelete = (id) => {
-        fetch(`http://localhost:4000/deletePost/${id}`, {
+        fetch(`https://secret-headland-48345.herokuapp.com/deletePost/${id}`, {
             method: 'DELETE',
         })
             .then(res => res.json())

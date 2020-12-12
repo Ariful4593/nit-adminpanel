@@ -49,6 +49,7 @@ const Login = () => {
             setUser(newUserInfo)
         }
     }
+    
 
     const handleSubmit = (e) => {
         if (user.email && user.password) {
@@ -59,7 +60,7 @@ const Login = () => {
                     newUser.error = '';
                     setUser(newUser);
                     setLoggedInUser(newUser)
-                    sessionStorage.setItem('user', JSON.stringify(newUser))
+                    localStorage.setItem('user', JSON.stringify(newUser))
                     history.push('/')
 
                 })
@@ -102,7 +103,7 @@ const Login = () => {
                             <input type='checkbox' name='checkbox' />
                             <span className='ml-3'>Remember Me</span>
                             <span className='float-right'>
-                                <Link>Forgot Password</Link>
+                                <Link to="">Forgot Password</Link>
                             </span>
                         </p>
                         <input

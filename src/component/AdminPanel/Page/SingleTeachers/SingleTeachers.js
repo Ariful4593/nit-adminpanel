@@ -1,27 +1,33 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import './SingleStudent.css';
-const SingleStudent = () => {
-    const { roll } = useParams();
-    const studentData = JSON.parse(sessionStorage.getItem('studentInfo'))
-    const student = studentData.filter(row => row.roll === roll);   
+
+const SingleTeachers = () => {
+    const { id } = useParams();
+    const teachersData = JSON.parse(sessionStorage.getItem('teacherInfo'))
+    const teacher = teachersData.filter(row => row.idNumber === id); 
     return (
         <div className="container mt-5">
             {
-                student.map(std => {
+                teacher.map(std => {
                     return (
                         <>
-                            <div key={std._id} className="shadow p-3 bg-white rounded">
+                            <div key={std.idNumber} className="shadow p-3 bg-white rounded">
                                 <h3 className="ml-4 ">About me</h3>
                                 <div className="row" >
                                     <div className="col-md-2 text-center profile ml-5">
-                                        <img style={{ width: '165px' }} src={`data:image/png;base64,${std.image.img}`} alt="" />
+                                        <img style={{ width: '165px' }} src={`data:image/png;base64,${std.images.img}`} alt="" />
                                     </div>
                                     <div className="col-md-9 d-flex align-items-center">
                                         <h2 className="text-secondary">{`${std.first} ${std.last}`}</h2>
                                     </div>
                                 </div>
                                 <div className="row mt-5">
+                                    <div className="col-md-3">
+                                        <h5 className="text-secondary">ID: </h5>
+                                    </div>
+                                    <div className="col-md-9">
+                                        <strong>{std.idNumber}</strong>
+                                    </div>
                                     <div className="col-md-3">
                                         <h5 className="text-secondary">Name: </h5>
                                     </div>
@@ -35,22 +41,10 @@ const SingleStudent = () => {
                                         <strong>{std.gender}</strong>
                                     </div>
                                     <div className="col-md-3">
-                                        <h5 className="text-secondary">Father Name: </h5>
+                                        <h5 className="text-secondary">Joining Date: </h5>
                                     </div>
                                     <div className="col-md-9">
-                                        <strong>{std.fName}</strong>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <h5 className="text-secondary">Mother Name: </h5>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <strong>{std.mName}</strong>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <h5 className="text-secondary">Date of Birth: </h5>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <strong>{std.dob}</strong>
+                                        <strong>{std.joiningDate}</strong>
                                     </div>
                                     <div className="col-md-3">
                                         <h5 className="text-secondary">Religion: </h5>
@@ -59,40 +53,22 @@ const SingleStudent = () => {
                                         <strong>{std.religion}</strong>
                                     </div>
                                     <div className="col-md-3">
-                                        <h5 className="text-secondary">Father Occuption: </h5>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <strong>{std.fOccuption}</strong>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <h5 className="text-secondary">Email: </h5>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <strong>{std.email}</strong>
-                                    </div>
-                                    <div className="col-md-3">
-                                        <h5 className="text-secondary">Admission Date: </h5>
-                                    </div>
-                                    <div className="col-md-9">
-                                        <strong>{std.admissionDate}</strong>
-                                    </div>
-                                    <div className="col-md-3">
                                         <h5 className="text-secondary">Department: </h5>
                                     </div>
                                     <div className="col-md-9">
                                         <strong>{std.department}</strong>
                                     </div>
                                     <div className="col-md-3">
-                                        <h5 className="text-secondary">Section: </h5>
+                                        <h5 className="text-secondary">Last Qualification: </h5>
                                     </div>
                                     <div className="col-md-9">
-                                        <strong>{std.section}</strong>
+                                        <strong>{std.qualification}</strong>
                                     </div>
                                     <div className="col-md-3">
-                                        <h5 className="text-secondary">Roll: </h5>
+                                        <h5 className="text-secondary">Email: </h5>
                                     </div>
                                     <div className="col-md-9">
-                                        <strong>{std.roll}</strong>
+                                        <strong>{std.email}</strong>
                                     </div>
                                     <div className="col-md-3">
                                         <h5 className="text-secondary">Address: </h5>
@@ -116,4 +92,4 @@ const SingleStudent = () => {
     );
 };
 
-export default SingleStudent;
+export default SingleTeachers;

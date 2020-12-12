@@ -9,6 +9,8 @@ import {
 import AdminPanel from './component/AdminPanel/AdminPanel/AdminPanel';
 import Login from './component/AdminPanel/Login/Login';
 import SingleStudent from './component/AdminPanel/Page/SingleStudent/SingleStudent';
+import SingleTeachers from './component/AdminPanel/Page/SingleTeachers/SingleTeachers';
+import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 function App() {
@@ -17,11 +19,14 @@ function App() {
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
       <Router>
         <Switch>
-          <Route exact path="/">
+          <PrivateRoute exact path="/">
             <AdminPanel></AdminPanel>
-          </Route>
+          </PrivateRoute>
           <Route path="/info/:roll">
             <SingleStudent></SingleStudent>
+          </Route>
+          <Route path="/teachers/:id">
+            <SingleTeachers/>
           </Route>
           <Route path="/login">
             <Login></Login>

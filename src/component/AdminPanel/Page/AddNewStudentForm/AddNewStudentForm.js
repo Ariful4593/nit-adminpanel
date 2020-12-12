@@ -17,17 +17,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 const AddNewStudentForm = () => {
     const classes = useStyles();
+    const [admissionDate, setAdmissionDate] = useState({
+        day: new Date(),
+    })
     const [formField, setFormField] = useState({
         first: '',
         last: '',
         gender: '',
         dob: '',
+        fName: '',
+        mName: '',
+        fOccuption: '',
         religion: '',
+        blood: '',
+        address: '', 
+        phone: '',       
         email: '',
+        roll: '',        
         department: '',
         section: '',
         admission: '',
-        phone: '',
+        admissionDate: admissionDate.day.toLocaleString(),
         description: '',
     })
     const [file, setFile] = useState(null)
@@ -48,6 +58,24 @@ const AddNewStudentForm = () => {
             isFieldValid = event.target.value
         }
         if (event.target.value === 'dob') {
+            isFieldValid = event.target.value
+        }
+        if (event.target.value === 'fName') {
+            isFieldValid = event.target.value
+        }
+        if (event.target.value === 'mName') {
+            isFieldValid = event.target.value
+        }
+        if (event.target.value === 'fOccuption') {
+            isFieldValid = event.target.value
+        }
+        if (event.target.value === 'address') {
+            isFieldValid = event.target.value
+        }
+        if (event.target.value === 'roll') {
+            isFieldValid = event.target.value
+        }
+        if (event.target.value === 'blood') {
             isFieldValid = event.target.value
         }
         if (event.target.value === 'religion') {
@@ -84,14 +112,21 @@ const AddNewStudentForm = () => {
         formData.append('last', formField.last)
         formData.append('gender', formField.gender)
         formData.append('dob', formField.dob)
+        formData.append('fName', formField.fName)
+        formData.append('mName', formField.mName)
+        formData.append('fOccuption', formField.fOccuption)
         formData.append('religion', formField.religion)
+        formData.append('blood', formField.blood)
+        formData.append('address', formField.address)
+        formData.append('phone', formField.phone)
         formData.append('email', formField.email)
+        formData.append('roll', formField.roll)        
         formData.append('department', formField.department)
         formData.append('section', formField.section)
         formData.append('admissionId', formField.admission)
-        formData.append('phone', formField.phone)
+        formData.append('admissionDate', formField.admissionDate)
         formData.append('description', formField.description)
-        fetch('http://localhost:4000/studentRegister', {
+        fetch('https://secret-headland-48345.herokuapp.com/studentRegister', {
             method: 'POST',
             body: formData,
         })
@@ -112,16 +147,15 @@ const AddNewStudentForm = () => {
             <h2>Add New Student</h2>
             <form id="form" className={classes.root} noValidate autoComplete="off">
                 <div className="row">
-
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 h-100" type="text" onBlur={handleChange} name="first" required id="outlined-required" variant="outlined" label="First Name" />
+                        <TextField className="w-100" type="text" onBlur={handleChange} name="first" required id="outlined-required" variant="outlined" label="First Name" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 h-100" type="text" onBlur={handleChange} name="last" required id="outlined-required" variant="outlined" label="Last Name" />
+                        <TextField className="w-100" type="text" onBlur={handleChange} name="last" required id="outlined-required" variant="outlined" label="Last Name" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
                         <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
-                            <InputLabel style={{ marginTop: '10px' }} id="demo-simple-select-label">Gender*</InputLabel>
+                            <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Gender*</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -138,34 +172,20 @@ const AddNewStudentForm = () => {
 
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 h-100" onBlur={handleChange} name="dob" required id="outlined-required" variant="outlined" type="date" label="Date of Birth" />
+                        <TextField className="w-100 h-100" onBlur={handleChange} name="dob" required id="outlined-required" variant="outlined" type="text" label="Date of Birth" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 h-100" type="text" onBlur={handleChange} name="roll" required id="outlined-required" variant="outlined" label="Roll" />
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="fName" required id="outlined-required" variant="outlined" label="Father Name" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
-                            <InputLabel style={{ marginTop: '10px' }} id="demo-simple-select-label">Blood Group*</InputLabel>
-                            <Select
-                                labelId="demo-simple-select-label"
-                                id="demo-simple-select"
-                                onBlur={handleChange}
-                                name="blood"
-                                required
-                                onChange={handleChange}
-                            >
-                                <MenuItem value="A+">A+</MenuItem>
-                                <MenuItem value="A-">A-</MenuItem>
-                                <MenuItem value="B+">B+</MenuItem>
-                                <MenuItem value="B-">B-</MenuItem>
-                                <MenuItem value="O+">O+</MenuItem>
-                                <MenuItem value="O-">O-</MenuItem>
-                            </Select>
-                        </FormControl>
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="mName" required id="outlined-required" variant="outlined" label="Mother Name" />
+                    </div>
+                    <div className="col-md-3 mt-4 pr-0">
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="fOccuption" required id="outlined-required" variant="outlined" label="Father Occuption" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
                         <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
-                            <InputLabel style={{ marginTop: '10px' }} id="demo-simple-select-label">Religion*</InputLabel>
+                            <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Religion*</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -184,11 +204,40 @@ const AddNewStudentForm = () => {
                         </FormControl>
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 h-100" type="email" onBlur={handleChange} name="email" required id="outlined-required" variant="outlined" label="Email" />
+                        <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
+                            <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Blood Group*</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-label"
+                                id="demo-simple-select"
+                                onBlur={handleChange}
+                                name="blood"
+                                required
+                                onChange={handleChange}
+                            >
+                                <MenuItem value="A+">A+</MenuItem>
+                                <MenuItem value="A-">A-</MenuItem>
+                                <MenuItem value="B+">B+</MenuItem>
+                                <MenuItem value="B-">B-</MenuItem>
+                                <MenuItem value="O+">O+</MenuItem>
+                                <MenuItem value="O-">O-</MenuItem>
+                            </Select>
+                        </FormControl>
+                    </div>
+                    <div className="col-md-3 mt-4 pr-0">
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="address" required id="outlined-required" variant="outlined" label="Address" />
+                    </div>
+                    <div className="col-md-3 mt-4 pr-0">
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="phone" required id="outlined-required" variant="outlined" label="Phone" />
+                    </div>
+                    <div className="col-md-3 mt-4 pr-0">
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="email" required id="outlined-required" variant="outlined" label="Email" />                        
+                    </div>
+                    <div className="col-md-3 mt-4 pr-0">
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="roll" required id="outlined-required" variant="outlined" label="Roll" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
                         <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
-                            <InputLabel style={{ marginTop: '10px' }} id="demo-simple-select-label">Department*</InputLabel>
+                            <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Department*</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -207,7 +256,7 @@ const AddNewStudentForm = () => {
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
                         <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
-                            <InputLabel style={{ marginTop: '10px' }} id="demo-simple-select-label">Section*</InputLabel>
+                            <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Section*</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
@@ -224,18 +273,16 @@ const AddNewStudentForm = () => {
                         </FormControl>
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 h-100" type="text" onBlur={handleChange} name="admission" required id="outlined-required" variant="outlined" label="Admission ID" />
+                        <TextField className="w-100" type="text" onBlur={handleChange} name="admission" required id="outlined-required" variant="outlined" label="Admission ID" />
                     </div>
-                    <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 h-100" type="text" onBlur={handleChange} name="phone" required id="outlined-required" variant="outlined" label="Phone" />
-                    </div>
+                    
                     <div className="col-md-6 mt-4">
                         <TextareaAutosize aria-label="minimum height" id="outlined-basic" variant="outlined" onBlur={handleChange} className="w-100" name="description" rowsMin={8} placeholder="Short BIO" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <div class="form-group">
+                        <div className="form-group">
                             <label >Upload Photo</label>
-                            <input type="file" onBlur={handleFileChange} class="form-control-file" required id="outlined-required" />
+                            <input type="file" onBlur={handleFileChange} className="form-control-file" required id="outlined-required" />
                             
                         </div>
                     </div>

@@ -1,5 +1,4 @@
 import React from 'react';
-import TeachersColumn from '../../../../fakeData/Teachers/TeachersColumn';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -10,6 +9,12 @@ import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Link } from "react-router-dom";
+import columns from '../../../../fakeData/columns';
+import { useEffect } from 'react';
+import { useState } from 'react';
+
+
+
 const useStyles = makeStyles({
     root: {
         width: '100%',
@@ -18,7 +23,7 @@ const useStyles = makeStyles({
         maxHeight: 765,
     },
 });
-const AllTeachers = () => {
+const AllStudent = () => {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -31,14 +36,15 @@ const AllTeachers = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-    const teachersData = JSON.parse(sessionStorage.getItem('teacherInfo'))
+    
+    const studentData = JSON.parse(sessionStorage.getItem('studentInfo'))
     return (
         <Paper className={classes.root}>
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
                     <TableHead>
                         <TableRow>
-                            {TeachersColumn.map((column) => (
+                            {columns.map((column) => (
                                 <TableCell
                                     key={column.id}
                                     align={column.align}
@@ -50,9 +56,9 @@ const AllTeachers = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {teachersData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                        {studentData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                             return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.idNumber}>
+                                <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
                                     {/* {columns.map((column) => {
                                         const value = row[column.id];
                                         console.log(row);
@@ -64,41 +70,38 @@ const AllTeachers = () => {
                                         );
                                     })
                                     } */}
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0 ml-2">{row.idNumber}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 ml-2">{row.roll}</p>
                                     </TableCell>
-                                    <TableCell className="text-center" style={{padding: '5px'}} >
-                                        <img className="" style={{width: '35px', height: '35px', borderRadius: '20px'}} src={`data:image/png;base64,${row.images.img}`} alt=""/>
+                                    <TableCell className=" text-center" style={{ padding: '5px' }} >
+                                        <img className="" style={{ height: '35px', borderRadius: '20px' }} src={`data:image/png;base64,${row.image.img}`} alt="" />
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <Link to={`/teachers/${row.idNumber}`}><p className="m-0 ">{`${row.first} ${row.last}`}</p></Link>
-                                        
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <Link to={`/info/${row.roll}`}><p className="m-0">{`${row.first} ${row.last}`}</p></Link>
+
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0 text-center">{row.gender}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0  text-center">{row.gender}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0 text-center">{row.blood}</p>
-                                    </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
+                                    <TableCell style={{ padding: '5px' }} >
                                         <p className="m-0 text-center">{row.department}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0 text-center">{row.qualification}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 text-center">{row.section}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                    <p className="m-0 text-center">{row.joiningDate}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 text-center">{row.admissionId}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
+                                    <TableCell style={{ padding: '5px' }} >
                                         <p className="m-0 text-center">{row.religion}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0 text-center">{row.address}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0  text-center">{row.dob}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
+                                    <TableCell style={{ padding: '5px' }} >
                                         <p className="m-0 text-center">{row.phone}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
+                                    <TableCell style={{ padding: '5px' }} >
                                         <p className="m-0 text-center">{row.email}</p>
                                     </TableCell>
                                 </TableRow>
@@ -110,7 +113,7 @@ const AllTeachers = () => {
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={teachersData.length}
+                count={studentData.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}
@@ -120,4 +123,4 @@ const AllTeachers = () => {
     );
 };
 
-export default AllTeachers;
+export default AllStudent;

@@ -21,6 +21,7 @@ import AddNewStudentForm from '../Page/AddNewStudentForm/AddNewStudentForm';
 import AddNewTeacher from '../Page/AddNewTeacher/AddNewTeacher';
 import AllTeachers from '../Page/Teacher/AllTeachers';
 import NoticeBoard from '../Page/Notice/NoticeBoard';
+import AllStudent from '../Page/AllStudent/AllStudent';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -37,17 +38,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-
-
-
 const collegeInfo = [
     { id: 1, category: 'Dashboard', expandType: 'panel1', icon: faChartLine, list1: 'Admin', list2: 'Students', list3: 'Teachers' },
     { id: 2, category: 'Student', expandType: 'panel2', icon: faUser, list1: 'All Student', list2: 'Admission Form', list3: 'Student Stipend' },
-    { id: 3, category: 'Teachers', expandType: 'panel3', icon: faBookReader, list1: 'All Teacher', list2: 'Teacher Details', list3: 'Add Teacher', },
+    { id: 3, category: 'Teachers', expandType: 'panel3', icon: faBookReader, list1: 'All Teacher', list2: 'Add Teacher', },
     { id: 4, category: 'Account', expandType: 'panel4', icon: faUserCircle, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses', list4: 'Fees Added' },
     {
         id: 5, category: 'Department', expandType: 'panel5', icon: faArrowsAlt,
-        list1: 'All Department', list2: 'Add New Department'
+        list1: 'Computer', list2: 'Civil', list3: 'EEE', list4: 'Mechanical', list5: 'Textile', list6: 'Add New Department'
     },
 
     { id: 6, category: 'Subject', expandType: 'panel6', icon: faCalculator },
@@ -76,10 +74,25 @@ const AdminPanel = () => {
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+    useEffect(() => {
+        fetch('https://secret-headland-48345.herokuapp.com/getRegisterStudent')
+            .then(res => res.json())
+            .then(data => {
+                sessionStorage.setItem('studentInfo', JSON.stringify(data))
+            })
+    }, [])
+
+    useEffect(() => {
+        fetch('https://secret-headland-48345.herokuapp.com/registerTeacher')
+            .then(res => res.json())
+            .then(data => {
+                sessionStorage.setItem('teacherInfo', JSON.stringify(data))
+            })
+    }, [])
     return (
         <div className="row w-100">
             <div className="col-2 pr-xl-0" style={{ backgroundColor: '#042954', color: 'white', }}>
-                <h1 className="text-danger" style={{ backgroundColor: '#FDC500', height: '64px', padding: '7px 10px 0px 35px' }}>NIT</h1>
+                <h1 className="text-white nit-home" style={{height: '64px', padding: '7px 10px 0px 65px', cursor: 'pointer' }}>NIT</h1>
                 <div className={classes.root}>
                     {
                         collegeInfo.map(items => {
@@ -99,6 +112,8 @@ const AdminPanel = () => {
                                             <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list2}`)}>{items.list2}</li>
                                             <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list3}`)}>{items.list3}</li>
                                             <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list4}`)} >{items.list4}</li>
+                                            <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list5}`)} >{items.list5}</li>
+                                            <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list6}`)} >{items.list6}</li>
                                         </ul>
                                     </AccordionDetails>
                                 </Accordion>
@@ -107,7 +122,7 @@ const AdminPanel = () => {
                     }
                 </div>
             </div>
-            <div className="col-10" style={{background: '#F0F1F3'}}>
+            <div className="col-10" style={{ background: '#F0F1F3' }}>
 
                 <div className="row" >
                     <Navbar></Navbar>
@@ -152,6 +167,12 @@ const AdminPanel = () => {
                 }
                 {
                     category === 'Notice Board' && <NoticeBoard category={category} />
+                }
+                {
+                    category === 'All Student' && <AllStudent />
+                }
+                {
+                    category === 'Teachers' && <AllTeachers />
                 }
             </div>
 

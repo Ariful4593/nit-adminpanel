@@ -35,7 +35,8 @@ const StudentTable = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-
+    
+    const studentData = JSON.parse(sessionStorage.getItem('studentInfo'))
     // Color formatting...
     // function setColor(p) {
     //     var red = p < 50 ? 255 : Math.round(256 - (p - 50) * 5.12);
@@ -43,6 +44,7 @@ const StudentTable = () => {
     //     return "rgb(" + red + "," + green + ",0)";
     // }
     return (
+
         <Paper className={classes.root}>
             <TableContainer className={classes.container}>
                 <Table stickyHeader aria-label="sticky table">
@@ -51,7 +53,7 @@ const StudentTable = () => {
                             {columns.map((column) => (
                                 <TableCell
                                     key={column.id}
-                                    // align={column.align}
+                                    align={column.align}
                                     style={{ minWidth: column.minWidth, fontWeight: 'bold' }}
                                 >
                                     {column.label}
@@ -60,9 +62,9 @@ const StudentTable = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                        {studentData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                             return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
+                                <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
                                     {/* {columns.map((column) => {
                                         const value = row[column.id];
                                         console.log(row);
@@ -74,39 +76,39 @@ const StudentTable = () => {
                                         );
                                     })
                                     } */}
-                                    <TableCell style={{padding: '5px'}} >
+                                    <TableCell style={{ padding: '5px' }} >
                                         <p className="m-0 ml-2">{row.roll}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <img className="" style={{height: '35px'}} src={row.photo} alt="" />
+                                    <TableCell className=" text-center" style={{ padding: '5px' }} >
+                                        <img className="" style={{ height: '35px', borderRadius: '20px' }} src={`data:image/png;base64,${row.image.img}`} alt="" />
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <Link to={`/info/${row.roll}`}><p className="m-0">{row.name}</p></Link>
-                                        
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <Link to={`/info/${row.roll}`}><p className="m-0">{`${row.first} ${row.last}`}</p></Link>
+
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0">{row.gender}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0  text-center">{row.gender}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0">{row.department}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 text-center">{row.department}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0">{row.section}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 text-center">{row.section}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0">{row.father}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 text-center">{row.admissionId}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                    <p className="m-0">{row.address}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 text-center">{row.religion}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0">{row.dob}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0  text-center">{row.dob}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0">{row.phone}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 text-center">{row.phone}</p>
                                     </TableCell>
-                                    <TableCell style={{padding: '5px'}} >
-                                        <p className="m-0">{row.email}</p>
+                                    <TableCell style={{ padding: '5px' }} >
+                                        <p className="m-0 text-center">{row.email}</p>
                                     </TableCell>
                                 </TableRow>
                             );

@@ -7,3 +7,7 @@ ul li{
 ul li a{
     color: white;
 }
+
+.nit-home{
+    background: linear-gradient(to right, #ff9d01, #ffaa01);
+}

@@ -17,7 +17,7 @@ const Admin = () => {
                 headerData.map(item => {
                     return (
                         <div className="col-md-3 mt-4" key={item.id}>
-                            <div className="row shadow p-3 ml-2 bg-white rounded">
+                            <div className="row shadow p-3 ml-1 bg-white rounded">
                                 <div className="col-md-6 p-0" style={{ fontSize: '70px', textAlign: 'center', borderRadius: '60px', backgroundColor: `${item.bgColor}`, color: `${item.font}` }}>
                                     <FontAwesomeIcon style={{ fontSize: '45px', marginBottom: '8px' }} icon={item.icon} />
                                 </div>
