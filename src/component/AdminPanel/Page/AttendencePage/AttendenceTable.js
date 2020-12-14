@@ -77,7 +77,7 @@ const AttendenceTable = () => {
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
     const [att, setAtt] = useState([])
     useEffect(() => {
-        fetch('http://localhost:4000/getUser')
+        fetch('https://secret-headland-48345.herokuapp.com/getUser')
             .then(res => res.json())
             .then(data => setAtt(data))
     }, [])
@@ -115,7 +115,7 @@ const AttendenceTable = () => {
                                     </TableCell>
                                     <tr>
                                         {
-                                            row.present.map(data => {
+                                            row.data.map(data => {
                                                 return (
                                                     <td className="col-2">{data.present} </td>
                                                 )

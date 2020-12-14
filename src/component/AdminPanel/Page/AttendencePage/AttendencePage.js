@@ -46,34 +46,7 @@ const AttendencePage = () => {
     //     })
     // }, 10000)
     console.log(userData)
-    useEffect(() => {
-        for (let index = 0; index < userData.length; index++) {
-            const element = userData[index].present;
-            for (let i = 0; i < element.length; i++) {
-                const el = element[i].date;
-                if (el === today.toLocaleDateString()) {
-                    if (el) {
-                        // console.log(el)
-                    }
-
-                }
-                else {
-                    // if (rollNumber === false && today.getMinutes() >= 33) {
-                    //     fetch(`http://localhost:4000/absentUser`, {
-                    //         method: 'POST',
-                    //         headers: { 'Content-Type': 'application/json' },
-                    //         body: JSON.stringify(el)
-                    //     })
-                    // }
-                    console.log(el)
-                }
-
-            }
-            // console.log(element)
-        }
-        // const data = userData.filter(pd => pd.present.date)
-        // console.log(data)
-    }, [])
+    
 
     return (
         <div className="container">
@@ -116,7 +89,7 @@ const AttendencePage = () => {
             <div className="row">
                 <AttendenceTable />
             </div>
-            <div className="row">
+            <div className="row mt-5">
                 <input type="text" id="rollNumber" name="roll" onBlur={handleRoll} />
                 <button onClick={submitRoll}>Submit</button>
             </div>
