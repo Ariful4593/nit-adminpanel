@@ -22,6 +22,7 @@ import AddNewTeacher from '../Page/AddNewTeacher/AddNewTeacher';
 import AllTeachers from '../Page/Teacher/AllTeachers';
 import NoticeBoard from '../Page/Notice/NoticeBoard';
 import AllStudent from '../Page/AllStudent/AllStudent';
+import AttendencePage from '../Page/AttendencePage/AttendencePage';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -52,9 +53,9 @@ const collegeInfo = [
 
     { id: 7, category: 'Class Routine', expandType: 'panel7', icon: faUsersCog, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses' },
 
-    { id: 8, category: 'Attendence', expandType: 'panel8', icon: faCogs, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses' },
+    { id: 8, category: 'Attendence', expandType: 'panel8', icon: faCogs, list1: 'Computer', list2: 'Civil', list3: 'Mechanical' },
 
-    { id: 9, category: 'Exam', expandType: 'panel9', icon: faClipboard, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses' },
+    { id: 9, category: 'Exam', expandType: 'panel9', icon: faClipboard, list1: 'Class Test', list2: 'Mid Term', list3: 'Final Exam' },
 
     { id: 10, category: 'Notice', expandType: 'panel10', icon: faBell, list1: 'Notice Board' },
 
@@ -88,6 +89,11 @@ const AdminPanel = () => {
             .then(data => {
                 sessionStorage.setItem('teacherInfo', JSON.stringify(data))
             })
+    }, [])
+    useEffect(() => {
+        fetch('http://localhost:4000/getUser')
+            .then(res => res.json())
+            .then(data => sessionStorage.setItem('attendenceData', JSON.stringify(data)))
     }, [])
     return (
         <div className="row w-100">
@@ -173,6 +179,9 @@ const AdminPanel = () => {
                 }
                 {
                     category === 'Teachers' && <AllTeachers />
+                }
+                {
+                    category === 'Computer' && <AttendencePage />
                 }
             </div>
 
