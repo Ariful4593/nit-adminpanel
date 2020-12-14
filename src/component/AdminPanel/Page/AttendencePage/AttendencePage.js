@@ -27,7 +27,7 @@ const AttendencePage = () => {
         }
     }
     const submitRoll = () => {
-        fetch(`http://localhost:4000/user`, {
+        fetch(`https://secret-headland-48345.herokuapp.com/user`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(roll)
@@ -40,7 +40,7 @@ const AttendencePage = () => {
     // setInterval(() => {
     //     const formData = new FormData();
     //     formData.append('today', today.toLocaleDateString())
-    //     fetch(`http://localhost:4000/absentUser`, {
+    //     fetch(`https://secret-headland-48345.herokuapp.com/absentUser`, {
     //         method: 'POST',
     //         body: formData
     //     })
