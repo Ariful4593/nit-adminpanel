@@ -10,9 +10,6 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Link } from "react-router-dom";
 import columns from '../../../../fakeData/columns';
-import { useEffect } from 'react';
-import { useState } from 'react';
-
 
 
 const useStyles = makeStyles({

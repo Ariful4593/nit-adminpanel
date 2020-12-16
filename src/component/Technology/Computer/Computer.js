@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import AttendenceTable from './AttendenceTable';
+import { useState } from 'react';
+import AttendenceTable from '../../AdminPanel/Page/AttendencePage/AttendenceTable';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -13,18 +14,12 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 120,
     },
 }));
-const AttendencePage = () => {
+
+const Computer = () => {
     const classes = useStyles();
-
-    const userData = JSON.parse(sessionStorage.getItem('attendenceData'))
-    const today = new Date();
-    console.log(today.toLocaleDateString())
-    console.log(userData)
-
     const [currentCategory, setCurrentCategory] = useState({})
 
     const handleSection = (section, semester) => {
-        console.log(section, semester)
         const newCurrentCategory = {...currentCategory}
         newCurrentCategory.section = section;
         newCurrentCategory.semester = semester
@@ -54,7 +49,7 @@ const AttendencePage = () => {
                             {
                                 sectionArray.map(items => {
                                     return (
-                                        <div>
+                                        <div key={items.id}>
                                             <ListSubheader>{items.subheader}</ListSubheader>
                                             <MenuItem value={1} 
                                             onClick={() => handleSection(items.menuItem1, items.subheader)} 
@@ -76,7 +71,8 @@ const AttendencePage = () => {
                 <AttendenceTable currentCategory={currentCategory} />
             </div>
         </div>
-    );
+    )
+        
 };
 
-export default AttendencePage;
+export default Computer;

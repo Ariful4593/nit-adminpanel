@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import AttendenceTable from './AttendenceTable';
+import { useState } from 'react';
+import AttendenceTable from '../../AdminPanel/Page/AttendencePage/AttendenceTable';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -13,18 +14,12 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 120,
     },
 }));
-const AttendencePage = () => {
+const Textile = () => {
     const classes = useStyles();
-
-    const userData = JSON.parse(sessionStorage.getItem('attendenceData'))
-    const today = new Date();
-    console.log(today.toLocaleDateString())
-    console.log(userData)
 
     const [currentCategory, setCurrentCategory] = useState({})
 
     const handleSection = (section, semester) => {
-        console.log(section, semester)
         const newCurrentCategory = {...currentCategory}
         newCurrentCategory.section = section;
         newCurrentCategory.semester = semester
@@ -32,14 +27,14 @@ const AttendencePage = () => {
     }
 
     const sectionArray = [
-        { id: 1, subheader: '8th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 2, subheader: '7th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 3, subheader: '6th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 4, subheader: '5th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 5, subheader: '4th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 6, subheader: '3rd Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 7, subheader: '2nd Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 8, subheader: '1st Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
+        { id: 1, subheader: '8th Semester', menuItem1: 'Textile-A', menuItem2: 'Textile-B' },
+        { id: 2, subheader: '7th Semester', menuItem1: 'Textile-A', menuItem2: 'Textile-B' },
+        { id: 3, subheader: '6th Semester', menuItem1: 'Textile-A', menuItem2: 'Textile-B' },
+        { id: 4, subheader: '5th Semester', menuItem1: 'Textile-A', menuItem2: 'Textile-B' },
+        { id: 5, subheader: '4th Semester', menuItem1: 'Textile-A', menuItem2: 'Textile-B' },
+        { id: 6, subheader: '3rd Semester', menuItem1: 'Textile-A', menuItem2: 'Textile-B' },
+        { id: 7, subheader: '2nd Semester', menuItem1: 'Textile-A', menuItem2: 'Textile-B' },
+        { id: 8, subheader: '1st Semester', menuItem1: 'Textile-A', menuItem2: 'Textile-B' },
     ]
     return (
         <div className="container">
@@ -54,7 +49,7 @@ const AttendencePage = () => {
                             {
                                 sectionArray.map(items => {
                                     return (
-                                        <div>
+                                        <div key={items.id}>
                                             <ListSubheader>{items.subheader}</ListSubheader>
                                             <MenuItem value={1} 
                                             onClick={() => handleSection(items.menuItem1, items.subheader)} 
@@ -76,7 +71,7 @@ const AttendencePage = () => {
                 <AttendenceTable currentCategory={currentCategory} />
             </div>
         </div>
-    );
+    )
 };
 
-export default AttendencePage;
+export default Textile;

@@ -22,7 +22,12 @@ import AddNewTeacher from '../Page/AddNewTeacher/AddNewTeacher';
 import AllTeachers from '../Page/Teacher/AllTeachers';
 import NoticeBoard from '../Page/Notice/NoticeBoard';
 import AllStudent from '../Page/AllStudent/AllStudent';
-import AttendencePage from '../Page/AttendencePage/AttendencePage';
+import DetectStudent from '../Page/DetectStudent/DetectStudent';
+import Computer from '../../Technology/Computer/Computer';
+import Civil from '../../Technology/Civil/Civil';
+import Mechanical from '../../Technology/Mechanical/Mechanical';
+import EEE from '../../Technology/EEE/EEE';
+import Textile from '../../Technology/Textile/Textile';
 const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
@@ -53,7 +58,7 @@ const collegeInfo = [
 
     { id: 7, category: 'Class Routine', expandType: 'panel7', icon: faUsersCog, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses' },
 
-    { id: 8, category: 'Attendence', expandType: 'panel8', icon: faCogs, list1: 'Computer', list2: 'Civil', list3: 'Mechanical' },
+    { id: 8, category: 'Attendence', expandType: 'panel8', icon: faCogs, list1: 'Computer', list2: 'Civil', list3: 'Machanical',list4: 'EEE', list5: 'Textile', list6: 'Detect Student' },
 
     { id: 9, category: 'Exam', expandType: 'panel9', icon: faClipboard, list1: 'Class Test', list2: 'Mid Term', list3: 'Final Exam' },
 
@@ -91,7 +96,7 @@ const AdminPanel = () => {
             })
     }, [])
     useEffect(() => {
-        fetch('http://localhost:4000/getUser')
+        fetch('https://secret-headland-48345.herokuapp.com/getUser')
             .then(res => res.json())
             .then(data => sessionStorage.setItem('attendenceData', JSON.stringify(data)))
     }, [])
@@ -181,8 +186,24 @@ const AdminPanel = () => {
                     category === 'Teachers' && <AllTeachers />
                 }
                 {
-                    category === 'Computer' && <AttendencePage />
+                    category === 'Computer' && <Computer />
                 }
+                {
+                    category === 'Civil' && <Civil />
+                }
+                {
+                    category === 'Machanical' && <Mechanical />
+                }
+                {
+                    category === 'EEE' && <EEE />
+                }
+                {
+                    category === 'Textile' && <Textile />
+                }
+                {
+                    category === 'Detect Student' && <DetectStudent />
+                }
+                
             </div>
 
         </div>
