@@ -20,6 +20,7 @@ import MuiDialogActions from '@material-ui/core/DialogActions';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
+import ContentLoader from 'react-content-loader'
 
 const styles = (theme) => ({
     root: {
@@ -135,12 +136,14 @@ const Notice = ({ category }) => {
 
     return (
         <React.Fragment>
+            
             <CssBaseline />
             <Paper square className={classes.paper} style={{ height: `${category === 'Notice Board' ? '700px' : '400px'}`, overflow: 'scroll', width: '100%', background: 'none' }}>
                 <Typography className={classes.text} variant="h5" gutterBottom>
                     Inbox
                 </Typography>
-                <List className={classes.list}>
+                {
+                    post ? <List className={classes.list}>
                     {
 
                         post.map(({ _id, title, description, date }) => (
@@ -204,8 +207,11 @@ const Notice = ({ category }) => {
                             </React.Fragment>
                         ))
                     }
-                </List>
+                </List> : <ContentLoader />
+                }
+                
             </Paper>
+            
 
         </React.Fragment>
     );

@@ -38,7 +38,6 @@ const NoticeBoard = ({ category }) => {
         setFormData(newForm)
     }
     const handleSubmit = (e) => {
-        // sessionStorage.setItem('post', JSON.stringify([formData]))
         fetch('https://secret-headland-48345.herokuapp.com/adminPost', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },

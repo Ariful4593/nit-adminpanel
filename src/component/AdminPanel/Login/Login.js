@@ -9,7 +9,6 @@ import { UserContext } from '../../../App'
 
 
 const Login = () => {
-    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     const firebaseConfig = {
         apiKey: "AIzaSyBzUwfT2OlYveY3LTW-JMX7mvkGycWY9KI",
         authDomain: "nit-adminpanel.firebaseapp.com",

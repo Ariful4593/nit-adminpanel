@@ -10,7 +10,7 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Link } from "react-router-dom";
 import columns from '../../../../fakeData/columns';
-
+import studentImage from '../../../../image/img_avatar.jpg'
 
 const useStyles = makeStyles({
     root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles({
         maxHeight: 765,
     },
 });
-const AllStudent = () => {
+const AllStudent = ({registerStudent}) => {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -34,7 +34,7 @@ const AllStudent = () => {
         setPage(0);
     };
     
-    const studentData = JSON.parse(sessionStorage.getItem('studentInfo'))
+    // const studentData = JSON.parse(sessionStorage.getItem('studentInfo'))
     return (
         <Paper className={classes.root}>
             <TableContainer className={classes.container}>
@@ -53,7 +53,7 @@ const AllStudent = () => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {studentData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                        {registerStudent.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                             return (
                                 <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
                                     {/* {columns.map((column) => {
@@ -71,10 +71,10 @@ const AllStudent = () => {
                                         <p className="m-0 ml-2">{row.roll}</p>
                                     </TableCell>
                                     <TableCell className=" text-center" style={{ padding: '5px' }} >
-                                        <img className="" style={{ height: '35px', borderRadius: '20px' }} src={`data:image/png;base64,${row.image.img}`} alt="" />
+                                        <img className="" style={{ height: '35px', borderRadius: '20px' }} src={studentImage} alt="" />
                                     </TableCell>
                                     <TableCell style={{ padding: '5px' }} >
-                                        <Link to={`/info/${row.roll}`}><p className="m-0">{`${row.first} ${row.last}`}</p></Link>
+                                        <Link to={`/info/${row.roll}`}><p className="m-0">{`${row.name}`}</p></Link>
 
                                     </TableCell>
                                     <TableCell style={{ padding: '5px' }} >
@@ -110,7 +110,7 @@ const AllStudent = () => {
             <TablePagination
                 rowsPerPageOptions={[10, 25, 100]}
                 component="div"
-                count={studentData.length}
+                count={registerStudent.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onChangePage={handleChangePage}

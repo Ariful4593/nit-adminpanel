@@ -26,7 +26,6 @@ import DetectStudent from '../Page/DetectStudent/DetectStudent';
 import Computer from '../../Technology/Computer/Computer';
 import Civil from '../../Technology/Civil/Civil';
 import Mechanical from '../../Technology/Mechanical/Mechanical';
-import EEE from '../../Technology/EEE/EEE';
 import Textile from '../../Technology/Textile/Textile';
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -51,14 +50,14 @@ const collegeInfo = [
     { id: 4, category: 'Account', expandType: 'panel4', icon: faUserCircle, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses', list4: 'Fees Added' },
     {
         id: 5, category: 'Department', expandType: 'panel5', icon: faArrowsAlt,
-        list1: 'Computer', list2: 'Civil', list3: 'EEE', list4: 'Mechanical', list5: 'Textile', list6: 'Add New Department'
+        list1: 'Computer ', list2: 'Civil ', list3: 'EEE ', list4: 'Mechanical ', list5: 'Textile ', list6: 'Add New Department'
     },
 
     { id: 6, category: 'Subject', expandType: 'panel6', icon: faCalculator },
 
     { id: 7, category: 'Class Routine', expandType: 'panel7', icon: faUsersCog, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses' },
 
-    { id: 8, category: 'Attendence', expandType: 'panel8', icon: faCogs, list1: 'Computer', list2: 'Civil', list3: 'Machanical',list4: 'EEE', list5: 'Textile', list6: 'Detect Student' },
+    { id: 8, category: 'Attendence', expandType: 'panel8', icon: faCogs, list1: 'Computer', list2: 'Civil', list3: 'Machanical', list4: 'Textile', list5: 'Detect Student' },
 
     { id: 9, category: 'Exam', expandType: 'panel9', icon: faClipboard, list1: 'Class Test', list2: 'Mid Term', list3: 'Final Exam' },
 
@@ -75,23 +74,27 @@ const AdminPanel = () => {
         setCategory(stats)
     }
     const classes = useStyles();
-    const [expanded, setExpanded] = React.useState(false);
-
+    const [expanded, setExpanded] = useState(false);
+    const [registerStudent, setRegisterStudent] = useState([])
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
+    
+
     useEffect(() => {
         fetch('https://secret-headland-48345.herokuapp.com/getRegisterStudent')
             .then(res => res.json())
             .then(data => {
+                // console.log(data)
+                setRegisterStudent(data)
                 sessionStorage.setItem('studentInfo', JSON.stringify(data))
             })
     }, [])
-
     useEffect(() => {
         fetch('https://secret-headland-48345.herokuapp.com/registerTeacher')
             .then(res => res.json())
             .then(data => {
+                console.log(data)
                 sessionStorage.setItem('teacherInfo', JSON.stringify(data))
             })
     }, [])
@@ -100,6 +103,7 @@ const AdminPanel = () => {
             .then(res => res.json())
             .then(data => sessionStorage.setItem('attendenceData', JSON.stringify(data)))
     }, [])
+    
     return (
         <div className="row w-100">
             <div className="col-2 pr-xl-0" style={{ backgroundColor: '#042954', color: 'white', }}>
@@ -165,7 +169,7 @@ const AdminPanel = () => {
                     </>
                 }
                 {
-                    category === 'Students' && <div className="row"><StudentTable /></div>
+                    category === 'Students' && <div className="row"><StudentTable registerStudent={registerStudent} /></div>
                 }
                 {
                     category === 'Admission Form' && <AddNewStudentForm></AddNewStudentForm>
@@ -180,25 +184,22 @@ const AdminPanel = () => {
                     category === 'Notice Board' && <NoticeBoard category={category} />
                 }
                 {
-                    category === 'All Student' && <AllStudent />
+                    category === 'All Student' && <AllStudent registerStudent={registerStudent} />
                 }
                 {
                     category === 'Teachers' && <AllTeachers />
                 }
                 {
-                    category === 'Computer' && <Computer />
+                    category === 'Computer' && <Computer registerStudent={registerStudent}  />
                 }
                 {
-                    category === 'Civil' && <Civil />
+                    category === 'Civil' && <Civil registerStudent={registerStudent}  />
                 }
                 {
-                    category === 'Machanical' && <Mechanical />
+                    category === 'Machanical' && <Mechanical registerStudent={registerStudent}  />
                 }
                 {
-                    category === 'EEE' && <EEE />
-                }
-                {
-                    category === 'Textile' && <Textile />
+                    category === 'Textile' && <Textile registerStudent={registerStudent}  />
                 }
                 {
                     category === 'Detect Student' && <DetectStudent />

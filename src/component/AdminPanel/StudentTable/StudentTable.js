@@ -10,7 +10,8 @@ import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
 import { Link } from "react-router-dom";
 import columns from '../../../fakeData/columns';
-
+import studentImage from '../../../image/img_avatar.jpg'
+import DataTable from '../../../fakeData/DataTable/DataTable';
 
 
 const useStyles = makeStyles({
@@ -21,7 +22,7 @@ const useStyles = makeStyles({
         maxHeight: 765,
     },
 });
-const StudentTable = () => {
+const StudentTable = ({registerStudent}) => {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -34,8 +35,9 @@ const StudentTable = () => {
         setRowsPerPage(+event.target.value);
         setPage(0);
     };
-    
-    const studentData = JSON.parse(sessionStorage.getItem('studentInfo'))
+
+    // const studentData = JSON.parse(sessionStorage.getItem('studentInfo'))
+    // console.log(studentData ? true : false)
     // Color formatting...
     // function setColor(p) {
     //     var red = p < 50 ? 255 : Math.round(256 - (p - 50) * 5.12);
@@ -45,85 +47,80 @@ const StudentTable = () => {
     return (
 
         <Paper className={classes.root}>
-            <TableContainer className={classes.container}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            {columns.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth, fontWeight: 'bold' }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {studentData.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                            return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
-                                    {/* {columns.map((column) => {
-                                        const value = row[column.id];
-                                        console.log(row);
-
-                                        return (
-                                            <TableCell key={column.id} align={column.align}>
-                                                {value}
-                                            </TableCell>
-                                        );
-                                    })
-                                    } */}
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0 ml-2">{row.roll}</p>
-                                    </TableCell>
-                                    <TableCell className=" text-center" style={{ padding: '5px' }} >
-                                        <img className="" style={{ height: '35px', borderRadius: '20px' }} src={`data:image/png;base64,${row.image.img}`} alt="" />
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <Link to={`/info/${row.roll}`}><p className="m-0">{`${row.first} ${row.last}`}</p></Link>
-
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0  text-center">{row.gender}</p>
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0 text-center">{row.department}</p>
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0 text-center">{row.section}</p>
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0 text-center">{row.admissionId}</p>
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0 text-center">{row.religion}</p>
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0  text-center">{row.dob}</p>
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0 text-center">{row.phone}</p>
-                                    </TableCell>
-                                    <TableCell style={{ padding: '5px' }} >
-                                        <p className="m-0 text-center">{row.email}</p>
-                                    </TableCell>
+            {
+                registerStudent ? <>
+                    <TableContainer className={classes.container}>
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    {columns.map((column) => (
+                                        <TableCell
+                                            key={column.id}
+                                            align={column.align}
+                                            style={{ minWidth: column.minWidth, fontWeight: 'bold' }}
+                                        >
+                                            {column.label}
+                                        </TableCell>
+                                    ))}
                                 </TableRow>
-                            );
-                        })}
-                    </TableBody>
-                </Table>
-            </TableContainer>
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={studentData.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-            />
+                            </TableHead>
+                            <TableBody>
+                                {registerStudent.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                    return (
+                                        <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0 ml-2">{row.roll}</p>
+                                            </TableCell>
+                                            <TableCell className=" text-center" style={{ padding: '5px' }} >
+                                                <img className="" style={{ height: '35px', borderRadius: '20px' }} src={studentImage} alt="" />
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <Link to={`/info/${row.roll}`}><p className="m-0">{`${row.name}`}</p></Link>
+
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0  text-center">{row.gender}</p>
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0 text-center">{row.department}</p>
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0 text-center">{row.section}</p>
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0 text-center">{row.admissionId}</p>
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0 text-center">{row.religion}</p>
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0  text-center">{row.dob}</p>
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0 text-center">{row.phone}</p>
+                                            </TableCell>
+                                            <TableCell style={{ padding: '5px' }} >
+                                                <p className="m-0 text-center">{row.email}</p>
+                                            </TableCell>
+                                        </TableRow>
+                                    );
+                                })}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 100]}
+                        component="div"
+                        count={registerStudent.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onChangePage={handleChangePage}
+                        onChangeRowsPerPage={handleChangeRowsPerPage}
+                    />
+                </> : <DataTable />
+            }
+
+
         </Paper>
     );
 };

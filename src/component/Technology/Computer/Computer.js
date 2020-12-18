@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { useState } from 'react';
 import AttendenceTable from '../../AdminPanel/Page/AttendencePage/AttendenceTable';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     formControl: {
@@ -15,14 +16,20 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Computer = () => {
+const Computer = ({registerStudent}) => {
     const classes = useStyles();
     const [currentCategory, setCurrentCategory] = useState({})
-
+    useEffect(() => {
+        const newCurrentCategory = {...currentCategory}
+        newCurrentCategory.section = 'Computer-A';
+        newCurrentCategory.semester = '1st Semester';
+        setCurrentCategory(newCurrentCategory)
+    }, [currentCategory])
+    
     const handleSection = (section, semester) => {
         const newCurrentCategory = {...currentCategory}
         newCurrentCategory.section = section;
-        newCurrentCategory.semester = semester
+        newCurrentCategory.semester = semester;
         setCurrentCategory(newCurrentCategory)
     }
 
@@ -68,7 +75,7 @@ const Computer = () => {
                 </div>
             </div>
             <div className="row">
-                <AttendenceTable currentCategory={currentCategory} />
+                <AttendenceTable currentCategory={currentCategory} registerStudent={registerStudent} />
             </div>
         </div>
     )

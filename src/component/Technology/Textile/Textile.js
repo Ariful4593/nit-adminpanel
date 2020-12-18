@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
         minWidth: 120,
     },
 }));
-const Textile = () => {
+const Textile = ({registerStudent}) => {
     const classes = useStyles();
 
     const [currentCategory, setCurrentCategory] = useState({})
@@ -68,7 +68,7 @@ const Textile = () => {
                 </div>
             </div>
             <div className="row">
-                <AttendenceTable currentCategory={currentCategory} />
+                <AttendenceTable currentCategory={currentCategory} registerStudent={registerStudent} />
             </div>
         </div>
     )

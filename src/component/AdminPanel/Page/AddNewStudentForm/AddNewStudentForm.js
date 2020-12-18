@@ -148,10 +148,10 @@ const AddNewStudentForm = () => {
             <form id="form" className={classes.root} noValidate autoComplete="off">
                 <div className="row">
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" type="text" onBlur={handleChange} name="first" required id="outlined-required" variant="outlined" label="First Name" />
+                        <TextField className="w-100" type="text" onBlur={handleChange} name="first" required id="outlined-required1" variant="outlined" label="First Name" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" type="text" onBlur={handleChange} name="last" required id="outlined-required" variant="outlined" label="Last Name" />
+                        <TextField className="w-100" type="text" onBlur={handleChange} name="last" required id="outlined-required2" variant="outlined" label="Last Name" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
                         <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
@@ -159,7 +159,7 @@ const AddNewStudentForm = () => {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                // value={gender}
+                                value='Male'
                                 required
                                 onBlur={handleChange}
                                 name="gender"
@@ -172,16 +172,16 @@ const AddNewStudentForm = () => {
 
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 h-100" onBlur={handleChange} name="dob" required id="outlined-required" variant="outlined" type="text" label="Date of Birth" />
+                        <TextField className="w-100 h-100" onBlur={handleChange} name="dob" required id="outlined-required3" variant="outlined" type="text" label="Date of Birth" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 " type="text" onBlur={handleChange} name="fName" required id="outlined-required" variant="outlined" label="Father Name" />
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="fName" required id="outlined-required4" variant="outlined" label="Father Name" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 " type="text" onBlur={handleChange} name="mName" required id="outlined-required" variant="outlined" label="Mother Name" />
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="mName" required id="outlined-required5" variant="outlined" label="Mother Name" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 " type="text" onBlur={handleChange} name="fOccuption" required id="outlined-required" variant="outlined" label="Father Occuption" />
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="fOccuption" required id="outlined-required6" variant="outlined" label="Father Occuption" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
                         <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
@@ -189,7 +189,7 @@ const AddNewStudentForm = () => {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                // value={age}
+                                value='Islam'
                                 onBlur={handleChange}
                                 name="religion"
                                 required
@@ -210,6 +210,7 @@ const AddNewStudentForm = () => {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 onBlur={handleChange}
+                                value = 'A+'
                                 name="blood"
                                 required
                                 onChange={handleChange}
@@ -224,16 +225,16 @@ const AddNewStudentForm = () => {
                         </FormControl>
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 " type="text" onBlur={handleChange} name="address" required id="outlined-required" variant="outlined" label="Address" />
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="address" required id="outlined-required7" variant="outlined" label="Address" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 " type="text" onBlur={handleChange} name="phone" required id="outlined-required" variant="outlined" label="Phone" />
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="phone" required id="outlined-required8" variant="outlined" label="Phone" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 " type="text" onBlur={handleChange} name="email" required id="outlined-required" variant="outlined" label="Email" />                        
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="email" required id="outlined-required9" variant="outlined" label="Email" />                        
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100 " type="text" onBlur={handleChange} name="roll" required id="outlined-required" variant="outlined" label="Roll" />
+                        <TextField className="w-100 " type="text" onBlur={handleChange} name="roll" required id="outlined-required10" variant="outlined" label="Roll" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
                         <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
@@ -242,6 +243,7 @@ const AddNewStudentForm = () => {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 onBlur={handleChange}
+                                value='Computer'
                                 name="department"
                                 required
                                 onChange={handleChange}
@@ -261,6 +263,7 @@ const AddNewStudentForm = () => {
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 onBlur={handleChange}
+                                value='A'
                                 required
                                 name="section"
                                 onChange={handleChange}
@@ -273,7 +276,7 @@ const AddNewStudentForm = () => {
                         </FormControl>
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" type="text" onBlur={handleChange} name="admission" required id="outlined-required" variant="outlined" label="Admission ID" />
+                        <TextField className="w-100" type="text" onBlur={handleChange} name="admission" required id="outlined-required11" variant="outlined" label="Admission ID" />
                     </div>
                     
                     <div className="col-md-6 mt-4">
@@ -282,7 +285,7 @@ const AddNewStudentForm = () => {
                     <div className="col-md-3 mt-4 pr-0">
                         <div className="form-group">
                             <label >Upload Photo</label>
-                            <input type="file" onBlur={handleFileChange} className="form-control-file" required id="outlined-required" />
+                            <input type="file" onBlur={handleFileChange} className="form-control-file" required id="outlined-required12" />
                             
                         </div>
                     </div>

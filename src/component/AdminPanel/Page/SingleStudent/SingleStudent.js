@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import './SingleStudent.css';
+import studentImage from '../../../../image/img_avatar.jpg'
 const SingleStudent = () => {
     const { roll } = useParams();
     const studentData = JSON.parse(sessionStorage.getItem('studentInfo'))
@@ -11,14 +12,14 @@ const SingleStudent = () => {
                 student.map(std => {
                     return (
                         <>
-                            <div key={std._id} className="shadow p-3 bg-white rounded">
+                            <div key={std.admissionId} className="shadow p-3 bg-white rounded">
                                 <h3 className="ml-4 ">About me</h3>
                                 <div className="row" >
                                     <div className="col-md-2 text-center profile ml-5">
-                                        <img style={{ width: '165px' }} src={`data:image/png;base64,${std.image.img}`} alt="" />
+                                        <img style={{ width: '165px' }} src={studentImage} alt="" />
                                     </div>
                                     <div className="col-md-9 d-flex align-items-center">
-                                        <h2 className="text-secondary">{`${std.first} ${std.last}`}</h2>
+                                        <h2 className="text-secondary">{`${std.name}`}</h2>
                                     </div>
                                 </div>
                                 <div className="row mt-5">
@@ -26,7 +27,7 @@ const SingleStudent = () => {
                                         <h5 className="text-secondary">Name: </h5>
                                     </div>
                                     <div className="col-md-9">
-                                        <strong>{`${std.first} ${std.last}`}</strong>
+                                        <strong>{`${std.name} `}</strong>
                                     </div>
                                     <div className="col-md-3">
                                         <h5 className="text-secondary">Gender: </h5>
@@ -59,10 +60,10 @@ const SingleStudent = () => {
                                         <strong>{std.religion}</strong>
                                     </div>
                                     <div className="col-md-3">
-                                        <h5 className="text-secondary">Father Occuption: </h5>
+                                        <h5 className="text-secondary">Father Occupation: </h5>
                                     </div>
                                     <div className="col-md-9">
-                                        <strong>{std.fOccuption}</strong>
+                                        <strong>{std.fOccupation}</strong>
                                     </div>
                                     <div className="col-md-3">
                                         <h5 className="text-secondary">Email: </h5>

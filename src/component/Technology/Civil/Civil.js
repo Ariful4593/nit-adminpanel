@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Civil = () => {
+const Civil = ({registerStudent}) => {
     const classes = useStyles();
 
     const [currentCategory, setCurrentCategory] = useState({})
@@ -69,7 +69,7 @@ const Civil = () => {
                 </div>
             </div>
             <div className="row">
-                <AttendenceTable currentCategory={currentCategory} />
+                <AttendenceTable currentCategory={currentCategory} registerStudent={registerStudent} />
             </div>
         </div>
     )
