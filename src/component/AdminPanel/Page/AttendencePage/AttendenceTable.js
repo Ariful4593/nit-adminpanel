@@ -34,8 +34,9 @@ const AttendenceTable = ({currentCategory, registerStudent}) => {
         setPage(0);
     };
 
-
+    
     const filterRegisterStudent = registerStudent.filter(std => std.semester === currentCategory.semester && std.department+'-'+std.section === currentCategory.section)
+    
     return (
 
         <Paper className={classes.root}>

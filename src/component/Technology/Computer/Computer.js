@@ -24,7 +24,7 @@ const Computer = ({registerStudent}) => {
         newCurrentCategory.section = 'Computer-A';
         newCurrentCategory.semester = '1st Semester';
         setCurrentCategory(newCurrentCategory)
-    }, [currentCategory])
+    }, [])
     
     const handleSection = (section, semester) => {
         const newCurrentCategory = {...currentCategory}
@@ -43,6 +43,7 @@ const Computer = ({registerStudent}) => {
         { id: 7, subheader: '2nd Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
         { id: 8, subheader: '1st Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
     ]
+    console.log(currentCategory)
     return (
         <div className="container">
             <div className="row">
