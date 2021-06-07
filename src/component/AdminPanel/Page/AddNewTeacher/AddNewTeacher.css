@@ -19,3 +19,6 @@
 .MuiInputBase-formControl{
     height: 100%!important;
 }
+.MuiOutlinedInput-input{
+    padding: 15px 0px 0px 13px !important;
+}

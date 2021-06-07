@@ -6,8 +6,8 @@ import AccordionDetails from '@material-ui/core/AccordionDetails';
 import AccordionSummary from '@material-ui/core/AccordionSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faChartLine, faUser, faBookReader, faUserCircle, faArrowsAlt, faCalculator, faUsersCog, faCogs, faClipboard, faBell } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import collegeInfo from '../../../fakeData/collegeInfo/collegeInfo';
 import Navbar from '../Navbar/Navbar';
 import './AdminPanel.css'
 import StudentTable from '../StudentTable/StudentTable';
@@ -42,28 +42,6 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
     },
 }));
-
-const collegeInfo = [
-    { id: 1, category: 'Dashboard', expandType: 'panel1', icon: faChartLine, list1: 'Admin', list2: 'Students', list3: 'Teachers' },
-    { id: 2, category: 'Student', expandType: 'panel2', icon: faUser, list1: 'All Student', list2: 'Admission Form', list3: 'Student Stipend' },
-    { id: 3, category: 'Teachers', expandType: 'panel3', icon: faBookReader, list1: 'All Teacher', list2: 'Add Teacher', },
-    { id: 4, category: 'Account', expandType: 'panel4', icon: faUserCircle, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses', list4: 'Fees Added' },
-    {
-        id: 5, category: 'Department', expandType: 'panel5', icon: faArrowsAlt,
-        list1: 'Computer ', list2: 'Civil ', list3: 'EEE ', list4: 'Mechanical ', list5: 'Textile ', list6: 'Add New Department'
-    },
-
-    { id: 6, category: 'Subject', expandType: 'panel6', icon: faCalculator },
-
-    { id: 7, category: 'Class Routine', expandType: 'panel7', icon: faUsersCog, list1: 'All Fees Collection', list2: 'Expenses', list3: 'Add Expenses' },
-
-    { id: 8, category: 'Attendence', expandType: 'panel8', icon: faCogs, list1: 'Computer', list2: 'Civil', list3: 'Machanical', list4: 'Textile', list5: 'Detect Student' },
-
-    { id: 9, category: 'Exam', expandType: 'panel9', icon: faClipboard, list1: 'Class Test', list2: 'Mid Term', list3: 'Final Exam' },
-
-    { id: 10, category: 'Notice', expandType: 'panel10', icon: faBell, list1: 'Notice Board' },
-
-]
 const AdminPanel = () => {
     const [category, setCategory] = useState('');
     useEffect(() => {
@@ -79,13 +57,12 @@ const AdminPanel = () => {
     const handleChange = (panel) => (event, isExpanded) => {
         setExpanded(isExpanded ? panel : false);
     };
-    
+
 
     useEffect(() => {
         fetch('https://secret-headland-48345.herokuapp.com/getRegisterStudent')
             .then(res => res.json())
             .then(data => {
-                // console.log(data)
                 setRegisterStudent(data)
                 sessionStorage.setItem('studentInfo', JSON.stringify(data))
             })
@@ -94,7 +71,6 @@ const AdminPanel = () => {
         fetch('https://secret-headland-48345.herokuapp.com/registerTeacher')
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 sessionStorage.setItem('teacherInfo', JSON.stringify(data))
             })
     }, [])
@@ -103,32 +79,39 @@ const AdminPanel = () => {
             .then(res => res.json())
             .then(data => sessionStorage.setItem('attendenceData', JSON.stringify(data)))
     }, [])
-    
     return (
         <div className="row w-100">
             <div className="col-2 pr-xl-0" style={{ backgroundColor: '#042954', color: 'white', }}>
-                <h1 className="text-white nit-home" style={{height: '64px', padding: '7px 10px 0px 65px', cursor: 'pointer' }}>NIT</h1>
+                <h1 className="text-white nit-home" style={{ height: '64px', padding: '7px 10px 0px 65px', cursor: 'pointer' }}>NIT</h1>
                 <div className={classes.root}>
                     {
                         collegeInfo.map(items => {
+                            const listData = items.listItem;
                             return (
-                                <Accordion expanded={expanded === `${items.expandType}`} key={items.id} onChange={handleChange(`${items.expandType}`)} style={{ background: 'none', color: 'white' }} >
+                                <Accordion
+                                    expanded={expanded === `${items.expandType}`}
+                                    key={items.id}
+                                    onChange={handleChange(`${items.expandType}`)}
+                                    style={{ background: 'none', color: 'white' }}
+                                >
                                     <AccordionSummary
-                                        expandIcon={<ExpandMoreIcon style={{ color: 'white' }} />}
+                                        expandIcon={
+                                            <ExpandMoreIcon style={{ color: 'white' }} />
+                                        }
                                         aria-controls={`${items.expandType}bh-content`}
                                         id={`${items.expandType}bh-header`}
 
-                                    ><FontAwesomeIcon icon={items.icon} />
+                                    >
+                                        <FontAwesomeIcon icon={items.icon} />
                                         <Typography className={classes.heading}>  {items.category}</Typography>
                                     </AccordionSummary>
                                     <AccordionDetails style={{ background: '#0c1639' }}>
                                         <ul style={{ padding: '0px 0px 0px 10px' }}>
-                                            <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list1}`)}>{items.list1}</li>
-                                            <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list2}`)}>{items.list2}</li>
-                                            <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list3}`)}>{items.list3}</li>
-                                            <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list4}`)} >{items.list4}</li>
-                                            <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list5}`)} >{items.list5}</li>
-                                            <li style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${items.list6}`)} >{items.list6}</li>
+                                            {
+                                                listData.map(data => (
+                                                    <li key={data} style={{ cursor: 'pointer' }} onClick={() => handleSidebar(`${data}`)}>{data}</li>
+                                                ))
+                                            }
                                         </ul>
                                     </AccordionDetails>
                                 </Accordion>
@@ -143,7 +126,8 @@ const AdminPanel = () => {
                     <Navbar></Navbar>
                 </div>
                 {
-                    category === 'Admin' && <>
+                    category === 'Admin' && 
+                    <>
                         <div className="container">
                             <div className="row ">
                                 <Admin></Admin>
@@ -190,21 +174,21 @@ const AdminPanel = () => {
                     category === 'Teachers' && <AllTeachers />
                 }
                 {
-                    category === 'Computer' && <Computer registerStudent={registerStudent}  />
+                    category === 'Computer' && <Computer registerStudent={registerStudent} />
                 }
                 {
-                    category === 'Civil' && <Civil registerStudent={registerStudent}  />
+                    category === 'Civil' && <Civil registerStudent={registerStudent} />
                 }
                 {
-                    category === 'Machanical' && <Mechanical registerStudent={registerStudent}  />
+                    category === 'Machanical' && <Mechanical registerStudent={registerStudent} />
                 }
                 {
-                    category === 'Textile' && <Textile registerStudent={registerStudent}  />
+                    category === 'Textile' && <Textile registerStudent={registerStudent} />
                 }
                 {
                     category === 'Detect Student' && <DetectStudent />
                 }
-                
+
             </div>
 
         </div>

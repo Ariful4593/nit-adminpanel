@@ -1,3 +1,11 @@
 /* .MuiTableCell-root{
     width: 120px!important;
 } */
+.table-heading{
+    width: 100px !important;
+}
+.department-row{
+    line-height: 2;
+    width: 200px;
+    padding: 5px;
+}

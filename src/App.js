@@ -7,10 +7,10 @@ import {
   Route,
 } from "react-router-dom";
 import AdminPanel from './component/AdminPanel/AdminPanel/AdminPanel';
-import Login from './component/AdminPanel/Login/Login';
+// import Login from './component/AdminPanel/Login/Login';
 import SingleStudent from './component/AdminPanel/Page/SingleStudent/SingleStudent';
 import SingleTeachers from './component/AdminPanel/Page/SingleTeachers/SingleTeachers';
-import PrivateRoute from './component/PrivateRoute/PrivateRoute';
+// import PrivateRoute from './component/PrivateRoute/PrivateRoute';
 
 export const UserContext = createContext();
 function App() {

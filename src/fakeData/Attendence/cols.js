@@ -1,5 +1,5 @@
 const cols = [
-    { id: 'name', label: 'Name', minWidth: 155 },
+    { id: 'name', label: 'Name', minWidth: 185 },
     { id: 'day1', label: '1', minWidth: 25, align: 'center', },
     { id: 'day2', label: '2', minWidth: 25, align: 'center', format: (value) => value.toLocaleString('en-US'), },
     { id: 'day3', label: '3', minWidth: 25, align: 'center', format: (value) => value.toLocaleString('en-US'), },

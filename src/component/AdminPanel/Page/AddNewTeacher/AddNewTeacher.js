@@ -32,7 +32,7 @@ const AddNewTeacher = () => {
         religion: '',
         email: '',
         department: '',
-        qualification : '',
+        qualification: '',
         address: '',
         phone: '',
         description: '',
@@ -114,25 +114,45 @@ const AddNewTeacher = () => {
         document.getElementById('teacherForm').reset();
         e.preventDefault()
     }
-    
+    // const followers = [
+    //     { '0-50k': [0] },
+    //     { '50k-100k': [50001] },
+    //     { '100k-250k': [100001] },
+    //     { '250k-500k': [250001] },
+    //     { '500k-750k': [500001] },
+    //     { '+1M': [750001, Number.MAX_SAFE_INTEGER] },
+    // ];
+
     return (
         <div className="container mt-5">
+            {/* {
+                followers.map(element => {
+                    return (
+                        <MenuItem
+                            value={element[Object.keys(element)]}
+                            key={Object.keys(element)[0]}
+                        >
+                            {Object.keys(element)[0]}
+                        </MenuItem>
+                    )
+                })
+            } */}
             <h2>Add New Teacher</h2>
             <form id="teacherForm" className={classes.root} noValidate autoComplete="off">
                 <div className="row">
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" onBlur={handleChange} name="first" id="outlined-basic" variant="outlined" label="First Name*" />
+                        <TextField className="w-100" onBlur={handleChange} name="first" id="outlined-basic1" variant="outlined" label="First Name*" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" onBlur={handleChange} name="last" id="outlined-basic" variant="outlined" label="Last Name*" />
+                        <TextField className="w-100" onBlur={handleChange} name="last" id="outlined-basic2" variant="outlined" label="Last Name*" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
+                        <FormControl id="outlined-basic3" variant="outlined" className={classes.formControl}>
                             <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Gender*</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                // value={gender}
+                                defaultValue=""
                                 onBlur={handleChange}
                                 name="gender"
                                 onChange={handleChange}
@@ -144,13 +164,13 @@ const AddNewTeacher = () => {
 
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" onBlur={handleChange} name="joiningDate" id="outlined-basic" variant="outlined" label="Joining Date" type="text" />
+                        <TextField className="w-100" onBlur={handleChange} name="joiningDate" id="outlined-basic4" variant="outlined" label="Joining Date" type="text" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" onBlur={handleChange} name="idnumber" id="outlined-basic" variant="outlined" label="ID No" />
+                        <TextField className="w-100" onBlur={handleChange} name="idnumber" id="outlined-basic5" variant="outlined" label="ID No" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
+                        <FormControl id="outlined-basic6" variant="outlined" className={classes.formControl}>
                             <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Blood Group*</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -158,7 +178,9 @@ const AddNewTeacher = () => {
                                 onBlur={handleChange}
                                 name="blood"
                                 onChange={handleChange}
+                                defaultValue=""
                             >
+                               
                                 <MenuItem value="A+">A+</MenuItem>
                                 <MenuItem value="A-">A-</MenuItem>
                                 <MenuItem value="B+">B+</MenuItem>
@@ -169,12 +191,12 @@ const AddNewTeacher = () => {
                         </FormControl>
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
+                        <FormControl id="outlined-basic7" variant="outlined" className={classes.formControl}>
                             <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Religion*</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                // value={age}
+                                defaultValue=""
                                 onBlur={handleChange}
                                 name="religion"
                                 onChange={handleChange}
@@ -188,10 +210,10 @@ const AddNewTeacher = () => {
                         </FormControl>
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" type="text" onBlur={handleChange} name="email" id="outlined-basic" variant="outlined" label="E-Mail*" />
+                        <TextField className="w-100" type="text" onBlur={handleChange} name="email" id="outlined-basic8" variant="outlined" label="E-Mail*" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
+                        <FormControl id="outlined-basic9" variant="outlined" className={classes.formControl}>
                             <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Department*</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -199,6 +221,7 @@ const AddNewTeacher = () => {
                                 onBlur={handleChange}
                                 name="department"
                                 onChange={handleChange}
+                                defaultValue=""
                             >
                                 <MenuItem value="Computer">Computer</MenuItem>
                                 <MenuItem value="Civil">Civil</MenuItem>
@@ -209,7 +232,7 @@ const AddNewTeacher = () => {
                         </FormControl>
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <FormControl id="outlined-basic" variant="outlined" className={classes.formControl}>
+                        <FormControl id="outlined-basic10" variant="outlined" className={classes.formControl}>
                             <InputLabel style={{ marginTop: '7px' }} id="demo-simple-select-label">Last Qualification</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -217,6 +240,7 @@ const AddNewTeacher = () => {
                                 onBlur={handleChange}
                                 name="qualification"
                                 onChange={handleChange}
+                                defaultValue=""
                             >
                                 <MenuItem value="MSC">MSC</MenuItem>
                                 <MenuItem value="BSC">BSC</MenuItem>
@@ -225,26 +249,26 @@ const AddNewTeacher = () => {
                         </FormControl>
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" onBlur={handleChange} name="address" id="outlined-basic" variant="outlined" label="Address" />
+                        <TextField className="w-100" onBlur={handleChange} name="address" id="outlined-basic11" variant="outlined" label="Address" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                        <TextField className="w-100" onBlur={handleChange} name="phone" id="outlined-basic" variant="outlined" label="Phone*" />
+                        <TextField className="w-100" onBlur={handleChange} name="phone" id="outlined-basic12" variant="outlined" label="Phone*" />
                     </div>
                     <div className="col-md-6 mt-4">
-                        <TextareaAutosize aria-label="minimum height" id="outlined-basic" variant="outlined" onBlur={handleChange} className="w-100" name="description" rowsMin={8} placeholder="Short BIO" />
+                        <TextareaAutosize aria-label="minimum height" id="outlined-basic13" variant="outlined" onBlur={handleChange} className="w-100" name="description" rowsMin={8} placeholder="Short BIO" />
                     </div>
                     <div className="col-md-3 mt-4 pr-0">
-                    <div className="form-group">
+                        <div className="form-group">
                             <label >Upload Photo</label>
                             <input type="file" onBlur={handleFileChange} className="form-control-file" required id="outlined-required" />
-                            
+
                         </div>
                     </div>
                 </div>
 
                 <div className="row mt-2">
                     <button type="submit" className="btn btn-light save text-white ml-3" onClick={handleSubmit} >Save</button>
-                    <input type="reset" className="btn btn-light reset text-white ml-3" value="Reset" onClick={myFunction}/>
+                    <input type="reset" className="btn btn-light reset text-white ml-3" value="Reset" onClick={myFunction} />
 
 
                 </div>

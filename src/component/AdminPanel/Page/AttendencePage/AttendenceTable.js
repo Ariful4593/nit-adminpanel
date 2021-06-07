@@ -20,7 +20,7 @@ const useStyles = makeStyles({
         maxHeight: 710,
     },
 });
-const AttendenceTable = ({currentCategory, registerStudent}) => {
+const AttendenceTable = ({ currentCategory, registerStudent }) => {
     const classes = useStyles();
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -34,61 +34,61 @@ const AttendenceTable = ({currentCategory, registerStudent}) => {
         setPage(0);
     };
 
-    
-    const filterRegisterStudent = registerStudent.filter(std => std.semester === currentCategory.semester && std.department+'-'+std.section === currentCategory.section)
+
+    const filterRegisterStudent = registerStudent.filter(std => std.semester === currentCategory.semester && std.department + '-' + std.section === currentCategory.section)
     
     return (
 
         <Paper className={classes.root}>
             {
                 filterRegisterStudent.length > 0 ? <>
-                <TableContainer className={classes.container}>
-                <Table stickyHeader aria-label="sticky table">
-                    <TableHead>
-                        <TableRow>
-                            {cols.map((column) => (
-                                <TableCell
-                                    key={column.id}
-                                    align={column.align}
-                                    style={{ minWidth: column.minWidth }}
-                                >
-                                    {column.label}
-                                </TableCell>
-                            ))}
-                        </TableRow>
-                    </TableHead>
-                </Table>
-                {filterRegisterStudent.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                            return (
-                                <TableRow hover role="checkbox" tabIndex={-1} key={row._id}>
-                                    <TableCell style={{ padding: '5px', minWidth: '155px' }} >
-                                    {row.name}
-                                    </TableCell>
-                                    <TableRow>
+                    <TableContainer className={classes.container}>
+                        <Table stickyHeader aria-label="sticky table">
+                            <TableHead>
+                                <TableRow>
+                                    {cols.map((column) => (
+                                        <TableCell
+                                            key={column.id}
+                                            align={column.align}
+                                            style={{ minWidth: column.minWidth }}
+                                        >
+                                            {column.label}
+                                        </TableCell>
+                                    ))}
+                                </TableRow>
+                            </TableHead>
+                        </Table>
+                        <table>
+                            <tbody>
+                            {filterRegisterStudent.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
+                                return (
+                                    <tr key={row.id} style={{borderBottom: '1px solid gainsboro'}}>
+                                        <td className="department-row">
+                                            {row.name}
+                                        </td>
                                         {
-                                            row.data.map(data => {
-                                                return (
-                                                    <TableCell className="col-2">{data.present} </TableCell>
-                                                )
+                                            row.data.map(x => {
+                                                return (<td style={{ width: '40px' }}>{x.present}</td>)
                                             })
                                         }
-                                    </TableRow>
-                                </TableRow>
-                            );
-                        })}
-            </TableContainer>
-            
-            <TablePagination
-                rowsPerPageOptions={[10, 25, 100]}
-                component="div"
-                count={filterRegisterStudent.length}
-                rowsPerPage={rowsPerPage}
-                page={page}
-                onChangePage={handleChangePage}
-                onChangeRowsPerPage={handleChangeRowsPerPage}
-            /></> : <DataTable />
+                                    </tr>
+                                );
+                            })}
+                            </tbody>
+                        </table>
+                    </TableContainer>
+
+                    <TablePagination
+                        rowsPerPageOptions={[10, 25, 100]}
+                        component="div"
+                        count={filterRegisterStudent.length}
+                        rowsPerPage={rowsPerPage}
+                        page={page}
+                        onChangePage={handleChangePage}
+                        onChangeRowsPerPage={handleChangeRowsPerPage}
+                    /></> : <DataTable />
             }
-            
+
         </Paper>
     );
 };

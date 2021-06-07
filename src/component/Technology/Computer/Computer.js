@@ -8,7 +8,7 @@ import Select from '@material-ui/core/Select';
 import { useState } from 'react';
 import AttendenceTable from '../../AdminPanel/Page/AttendencePage/AttendenceTable';
 import { useEffect } from 'react';
-
+import sectionArray from '../../../fakeData/sectionArray/sectionArray'
 const useStyles = makeStyles((theme) => ({
     formControl: {
         margin: theme.spacing(1),
@@ -16,60 +16,45 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Computer = ({registerStudent}) => {
+const Computer = ({ registerStudent }) => {
     const classes = useStyles();
     const [currentCategory, setCurrentCategory] = useState({})
     useEffect(() => {
-        const newCurrentCategory = {...currentCategory}
+        const newCurrentCategory = { ...currentCategory }
         newCurrentCategory.section = 'Computer-A';
         newCurrentCategory.semester = '1st Semester';
         setCurrentCategory(newCurrentCategory)
     }, [])
-    
+
     const handleSection = (section, semester) => {
-        const newCurrentCategory = {...currentCategory}
+        const newCurrentCategory = { ...currentCategory }
         newCurrentCategory.section = section;
         newCurrentCategory.semester = semester;
         setCurrentCategory(newCurrentCategory)
     }
-
-    const sectionArray = [
-        { id: 1, subheader: '8th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 2, subheader: '7th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 3, subheader: '6th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 4, subheader: '5th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 5, subheader: '4th Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 6, subheader: '3rd Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 7, subheader: '2nd Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-        { id: 8, subheader: '1st Semester', menuItem1: 'Computer-A', menuItem2: 'Computer-B' },
-    ]
-    console.log(currentCategory)
+    
     return (
         <div className="container">
             <div className="row">
                 <div className="col-12">
                     <FormControl className={classes.formControl}>
-                        <InputLabel htmlFor="grouped-select">Department</InputLabel>
+                        <InputLabel htmlFor="grouped-select">Grouping</InputLabel>
                         <Select defaultValue="" id="grouped-select">
                             <MenuItem value="">
-                                <em>Computer</em>
+                                <em>None</em>
                             </MenuItem>
                             {
-                                sectionArray.map(items => {
-                                    return (
-                                        <div key={items.id}>
-                                            <ListSubheader>{items.subheader}</ListSubheader>
-                                            <MenuItem value={1} 
-                                            onClick={() => handleSection(items.menuItem1, items.subheader)} 
-                                            className={`${currentCategory === items.menuItem1 ? 'text-danger' : ''}`}>{items.menuItem1}</MenuItem>
-                                            <MenuItem value={2} 
-                                            onClick={() => handleSection(items.menuItem2, items.subheader)}
-                                            className={`${currentCategory === items.menuItem2 ? 'text-danger' : ''}`}
-                                            >{items.menuItem2}</MenuItem>
-                                        </div>
-                                    )
-                                })
-
+                                sectionArray.map(items => (
+                                    [
+                                        <ListSubheader>{items.subheader}</ListSubheader>,
+                                        <MenuItem value={items.valueOne}
+                                        onClick={() => handleSection(items.menuItem1, items.subheader)}
+                                        >{items.menuItem1}</MenuItem>,
+                                        <MenuItem value={items.valueTwo}
+                                        onClick={() => handleSection(items.menuItem2, items.subheader)}
+                                        >{items.menuItem2}</MenuItem>
+                                ]
+                                ))
                             }
                         </Select>
                     </FormControl>
@@ -80,7 +65,7 @@ const Computer = ({registerStudent}) => {
             </div>
         </div>
     )
-        
+
 };
 
 export default Computer;
